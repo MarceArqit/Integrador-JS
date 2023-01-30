@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso a .todayNews</title>
+    <link rel="stylesheet" href="./assets/loginAndRegister.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./Assets/mediaqueries.css">
+</head>
+<body>
+  <header>
+    <div class="header__ppal">
+      <div class="redes">
+        <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+      </div>
+      <div class="logo__img">
+        <a href="./index.html"><img src="./Assets/img/todaynewslogo1.png" alt="logo" class="logo" /></a>
+      </div>
+
+      <nav class="navbar">
+        
+        <div>
+          <ul class="navbar-list">
+            <li><a class="navbar-login" href="./login.html">Login</a></li>
+            <li>
+              <a class="navbar-register" href="./register.html"
+                >Suscribite ahora</a
+              >
+            </li>
+          </ul>
+        </div>
+
+     
+      </nav>
+    </div>
+  </header>
+    <main>
+        <form class="form-container" id="form">
+            <h3 class="welcome">Bienvenido!</h3>
+            <p class="form__title">Ingresá a tu espacio <span>.todayNews</span></p>
+    
+    
+            <div class="form__field">
+              <input type="text" placeholder="Ingrese su Usuario" class="form__input" id="username" required autocomplete="off">
+              <small></small>
+            </div>
+    
+    
+            
+            <div class="form__field">
+              <input type="password" placeholder="Ingrese su Contraseña" class="form__input" id="password" autocomplete="off">
+              <small></small>
+            </div>
+    
+
+            <button type="submit" class="form__submit__btn"><span>Ingresar</span><span>Bienvenido</span></button>
+           
+    
+            
+          </form>
+    </main>
+    <footer>
+        <div class="footer-info">
+          <div class="info-one"></div>
+          <div class="info-two">
+            <ul>
+              <li><a href="#">Términos de Uso</a></li>
+              <li><a href="./register.html">Cómo publicar</a></li>
+              <li><a href="#nosotros">Sobre Nosotros</a></li>
+              <li><a href="#contacto">Contacto</a></li>
+            </ul>
+          </div>
+        </div>
+        <p>Hecho por <span>MarceArq</span> en Nucba</p>
+      </footer>
+    <script src="./assets/validationLogin.js"></script>
+      <script src="./assets/main.js"></script>
+</body>
+</html>

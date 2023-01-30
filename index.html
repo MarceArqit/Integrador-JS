@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>.todayNews - Portal de Noticias</title>
+    <link rel="icon" href="./assets/img/todaynewslogo1.png">
+
+    
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="./assets/mediaqueries.css" />
+    <link rel="stylesheet" href="./assets/animaciones.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+  </head>
+
+  <body>
+    <header>
+     
+      <nav class="navbar">
+        <div class="menu-label">
+          <img src="./assets/img/hamburguesa.png" alt="" class="menu-icon" />
+        </div>
+
+        <ul class="navbar-list">
+          <li><a class="navbar-login" href="./login.html">Login</a></li>
+          <li>
+            <a class="navbar-register" href="./register.html"
+              >Suscribite ahora</a
+            >
+          </li>
+        </ul>
+
+        <div class="img">
+          <a href="./index.html"><img src="./assets/img/todaynewslogo1.png" alt="logo" class="logo"></a> 
+        </div>
+        
+
+        <div class="newsCart-label" ">
+          <i class="fa-solid fa-star"></i>
+            <div class="favorite-bubble">0</div>
+          </i>
+        </div>
+
+        <div class="newsCart">
+          <h2>Tus Noticias Destacadas</h2>
+          <div class="newsCart-container"></div>
+          <span class="divider"></span>
+          <button class="btn-delete">Eliminar Noticias</button>
+        </div>
+
+        <div class="overlay"></div>
+      
+      </nav>
+    </header>
+    <main>
+      <section id="hero">
+        <div class="slider-container">
+          <div class="slider-left">
+            <i class="fa-solid fa-chevron-left"></i>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </div>
+          <div class="slicer-center">
+            <img src=""name ="image" >
+          </div>
+          <div class="slider-rigth">
+            <i class="fa-regular fa-circle-arrow-right"></i>
+            
+          </div>
+        </div>
+      </section>   
+     
+      <section id="info-news">
+     
+        
+        <div class="categories">
+          <button class="category active">Ultimas Noticias</button>
+          <button class="category" data-category="Deportes">Deportes</button>
+          <button class="category" data-category="Economia">Economia</button>
+          <button class="category" data-category="Tecno">
+            Tecno
+          </button>
+          <button class="category" data-category="Que mirar">Qué mirar?</button>
+          <button class="category" data-category="Tendencias">
+           Tendencias
+          </button>
+          
+        </div>
+        <hr>
+
+        <div class="news-container"></div>
+        <button class="btn-load"> Más News</button>
+        <hr>
+      </section>
+
+      <section id="our-readers">
+        <div class="reader-general">
+          <div class="reader">
+            <img src="./assets/people/people 1.png" alt="persona">
+            <div class="info-reader">
+              <h4>Dolores Duks</h4>
+              <p>" He dejado de informarme con otros sitios, todayNews es mi favorito..."</p>
+            </div>
+          </div>
+          <div class="reader">
+            <img src="./assets/people/people 2.png" alt="persona">
+            <div class="info-reader">
+              <h4>Claudio Matarazzo</h4>
+              <p>"El sistema de titulares es muy interesante ya que uno solo lee la info que mas le interesa."</p>
+            </div>
+          </div>
+          <div class="reader none">
+            <img src="./assets/people/people 3.png" alt="persona">
+            <div class="info-reader">
+              <h4>Karina Theprince</h4>
+              <p>"Como periodista, elijo todayNews."</p>
+            </div>
+          </div>
+          <div class="reader none">
+            <img src="./assets/people/people 4.png" alt="persona">
+            <div class="info-reader">
+              <h4>Ivon Sharon</h4>
+              <p>"Se diferencia de los demas sitios de noticias por su simplicidad en la busqueda de informacion. No lo cambiaria!."</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+      
+      
+    
+      <section id="contact-to-us">
+        <hr>
+        <div class="general">
+          <h2>Contáctenos</h2>
+          <div class="general-info">
+            <div class="phone">
+              <i class="fa-solid fa-phone"></i>
+              <p>011-123456789</p>
+            </div>
+            <div class="mail">
+              <i class="fa-solid fa-envelope"></i>
+              <p>infonews@portalinformatico.com.ar</p>
+            </div>
+            <div class="office">
+              <i class="fa-solid fa-location-dot"></i>
+              <p>Av.Pedro Goyena 1234 - Caba</p>
+            </div>
+
+          </div>
+        </div>
+        <div class="footer-redes">
+          <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+       
+      </section>
+    </main>
+    <footer>
+      <div class="footer-container">
+        
+        <div class="footer-information">
+          <div class="footer-about">
+            <div class="about-img">
+              <img src="./assets/img/todaynewslogo1.png" alt="logo">
+            </div>
+           
+            <p class="about-us">Somos un portal de noticias, con el objetivo de acercarte las ultimas noticias del pais y del mundo, resumiendo en pequeños titulares la informacion y si es de tu interes, podras continuar leyendo la noticia completa.</p>
+          </div>
+          <div class="footer-contactUs">
+            <div class="footer-contact">
+              <h3>Contactos</h3>
+              <ul>
+                <li>Contacto</li>
+                <li>Redacción</li>
+                <li>Politica de Privacidad</li>
+              </ul>
+            </div>
+           
+            <div class="footer-contact">
+              <h3>Formá Parte</h3>
+              <ul>
+                <li>Trabajá con nosotros</li>
+                <li>Redacción</li>
+                <li>Suscribite</li>
+              </ul>
+            </div>
+            <div class="footer-contact">
+              <h3>Cómo Publicar</h3>
+              <ul>
+                <li>Noticias</li>
+                <li>Via Redes Sociales</li>
+                <li>Edicion Impresa</li>
+              </ul>
+            </div>
+          </div>
+        
+          </div>
+    
+      </div>
+      <div class="copyright">
+        <p>Hecho por<b> © 2023 MarceArqIt</b></p>
+      </div>
+      
+    </footer>
+    <div class="add-modal"></div>
+    <script src="./assets/data.js"></script>
+    <script src="./assets/main.js"></script>
+  </body>
+</html>
