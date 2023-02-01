@@ -58,7 +58,7 @@ const renderDividerNews = (index = 0) => {
 };
 
 const renderFilteredNews = (category) => {
-  const newsList = newsData.filter(news => news.category === category);
+  const newsList = newsData.filter((news) => news.category === category);
   news.innerHTML = newsList.map(renderNew).join("");
 };
 
@@ -82,9 +82,9 @@ const showMoreNews = () => {
 };
 
 const changeBtnActiveState = (selectedCategory) => {
-  const categories = [...categoryList]
-  categories.forEach(categoryBtn => {
-    if(categoryBtn.dataset.category !== selectedCategory) {
+  const categories = [...categoryList];
+  categories.forEach((categoryBtn) => {
+    if (categoryBtn.dataset.category !== selectedCategory) {
       categoryBtn.classList.remove("active");
     } else {
       categoryBtn.classList.add("active");
@@ -100,16 +100,16 @@ const changeShowMoreBtnState = (selectedCategory) => {
   btnLoad.classList.add("hidden");
 };
 
-const changeFilterState = selectedCategory => {
+const changeFilterState = (selectedCategory) => {
   changeBtnActiveState(selectedCategory);
   changeShowMoreBtnState(selectedCategory);
 };
 
 const applyFilter = (e) => {
-  if(!e.target.classList.contains("category")) return;
+  if (!e.target.classList.contains("category")) return;
   const clickedCategory = e.target.dataset.category;
   changeFilterState(clickedCategory);
-  if(!clickedCategory) {
+  if (!clickedCategory) {
     news.innerHTML = "";
     renderNews();
   } else {
@@ -160,34 +160,36 @@ const closeOnOverlayClick = () => {
   overlay.classList.remove("show-overlay");
 };
 
-const renderCartProduct = ({ Img, UrlNews, Title, Description,}) => {
+const renderCartNews = ({ id, Img, UrlNews, Title, Description}) => {
   return `
-  <div class="cart-item">
-    <img src=${Img} alt="noticias" />
-    <div class="item-info">
-      <h3 class="item-title">${Title}</h3>
-      <p class="item-bid">${Description}</p>
-      <a href="${UrlNews}">Leer</a>
-    </div>
-   
+  <div class="saveNew">
+  <img src="${Img}" alt="img" id="${id}">
+  <div class="savedInfo">
+    <h2>${Title}</h2>
+    <p>${Description}</p>
+    <a href="${UrlNews}">Leer</a>
   </div>
+  <button class="btn-delete"
+      data-id='${id}'
+      data-img='${Img}'
+      data-title='${Title}'
+      data-description= "${Description}"> <i class="fa-solid fa-trash"></i></button>
+</div>
   `;
 };
 
-const renderCart = () => {
+const renderCartNew = () => {
   if (!cartNews.length) {
     newsCart.innerHTML = `<p class="empty-msg">No hay noticias guardadas.</p>`;
     return;
   }
-  newsCart.innerHTML = cart.map(renderCartProduct).join("");
+  newsCart.innerHTML = cartNews.map(renderCartNews).join("");
 };
 
+const isExistingCartNews = ({ id }) => cartNews.some((news) => news.id === id);
 
-const isExistingCartProduct = ({ id }) =>
-cartNews.some((product) => product.id === id);
-
-const createCartProduct = (product) => {
-  cartNews = [...cartNews, { ...product, quantity: 1 }];
+const createCartProduct = (news) => {
+  cartNews = [...cartNews, { ...news, quantity: 1 }];
 };
 
 const showSuccessModal = (msg) => {
@@ -208,29 +210,29 @@ const disableBtn = (button) => {
 
 const checkCartState = () => {
   saveLocalStorage(cartNews);
-  renderNew();
+  renderCartNew();
   disableBtn(deleteBtn);
   renderCartBubble();
 };
 
-const addUnitToProduct = (product) => {
-  cartNews = cartNews.map((cartProduct) =>
-    cartProduct.id === product.id
-      ? { ...cartProduct, quantity: cartProduct.quantity + 1 }
-      : cartProduct
+const addUnitToNew = (news) => {
+  cartNews = cartNews.map((cartNew) =>
+    cartNew.id === news.id
+      ? { ...cartNew, quantity: cartNew.quantity + 1 }
+      : cartNew
   );
 };
 
-const addProduct = (e) => {
+const addNew = (e) => {
   if (!e.target.classList.contains("btn-add")) return;
-  const { id, name, bid, img } = e.target.dataset;
+  const { id, Title, Description, Img, UrlNews } = e.target.dataset;
 
-  const product = { id, name, bid, img };
-  if (isExistingCartProduct(product)) {
-    addUnitToProduct(product);
+  const product = { id, Title, Description, Img, UrlNews };
+  if (isExistingCartNews(news)) {
+    addUnitToNew(news);
     showSuccessModal("Se agregó una nueva noticia en favoritos.");
   } else {
-    createCartProduct(product);
+    createCartProduct(news);
     showSuccessModal("La noticia se ha guardado en favoritos.");
   }
   checkCartState();
@@ -241,7 +243,7 @@ const renderCartBubble = () => {
 };
 
 const resetCartItems = () => {
-  cart = [];
+  cartNews = [];
   checkCartState();
 };
 
@@ -253,8 +255,7 @@ const completeCartAction = (confirmMsg, successMsg) => {
   }
 };
 
-
-const deleteCart = () => {
+const deleteNewsInCart = () => {
   completeCartAction(
     "¿Desea eliminar todos los productos del carrito?",
     "El carrito se ha vacido"
@@ -266,54 +267,44 @@ const handlePlusBtnEvent = (id) => {
   addUnitToProduct(existingProduct);
 };
 
-const removeProductFromCart = ({ id }) => {
-  cartNews = cartNews.filter((product) => product.id !== id);
+const removeNewsFromCart = ({ id }) => {
+  cartNews = cartNews.filter((news) => news.id !== id);
   checkCartState();
 };
 
-const substractProductUnit = ({ id }) => {
-  cartNews = cartNews.map((product) =>
-    product.id === id ? { ...product, quantity: product.quantity - 1 } : product
+const substractNewUnit = ({ id }) => {
+  cartNews = cartNews.map((news) =>
+  news.id === id ? { ...news, quantity: news.quantity - 1 } : news
   );
 };
 
 const handleMinutBtnEvent = (id) => {
-  const existingProduct = cartNews.find((product) => product.id === id);
+  const existingNews = cartNews.find((news) => news.id === id);
 
-  if (existingProduct.quantity === 1) {
+  if (existingNews.quantity === 1) {
     if (window.confirm("¿Desea eliminar el producto del carrito?")) {
-      removeProductFromCart(existingProduct);
+      removeNewsFromCart(existingNews);
     }
     return;
   }
-  substractProductUnit(existingProduct);
+  substractNewUnit(existingNews);
 };
 
-const handleQuantity = (e) => {
-  if (e.target.classList.contains("down")) {
-    handleMinutBtnEvent(e.target.dataset.id);
-  } else if (e.target.classList.contains("up")) {
-    handlePlusBtnEvent(e.target.dataset.id);
-  }
-  checkCartState();
-};
 
 const init = () => {
   renderNews();
-  categories.addEventListener('click',applyFilter)
+  categories.addEventListener("click", applyFilter);
   btnLoad.addEventListener("click", showMoreNews);
   barsBtn.addEventListener("click", toggleMenu);
   newsCartBtn.addEventListener("click", toggleCart);
   window.addEventListener("scroll", closeOnScroll);
   barsMenu.addEventListener("click", closeOnClick);
   overlay.addEventListener("click", closeOnOverlayClick);
-  document.addEventListener("DOMContentLoaded", renderCart);
-  newsCart.addEventListener("click", handleQuantity);
-  news.addEventListener("click", addProduct);
-  deleteBtn.addEventListener("click", deleteCart);
+  document.addEventListener("DOMContentLoaded", renderCartNew);
+  news.addEventListener("click", addNew);
+  deleteBtn.addEventListener("click", deleteNewsInCart);
   disableBtn(deleteBtn);
   renderCartBubble();
 };
-
 
 init();
