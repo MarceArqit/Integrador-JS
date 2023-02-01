@@ -506,8 +506,9 @@ input[name="r"] {
   padding: 10px 20px;
   border-radius: 15px;
   color: white;
+  font-family: "Roboto", sans-serif;
 }
-font-family: "Roboto", sans-serif;
+
 
 /* SECTION CONTACT TO US */
 
@@ -573,7 +574,7 @@ footer {
   flex-direction: column;
 }
 
-.footer-redes {
+.redes {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -581,7 +582,7 @@ footer {
   padding: 10px;
 }
 
-.footer-redes a i {
+.redes a i {
   color: gray;
   font-size: 28px;
 }
@@ -604,6 +605,8 @@ footer {
   padding: 20px;
   width: 30%;
   gap: 20px;
+  border: 1px rgb(197, 197, 197) solid;
+  border-radius: 10px;
 }
 
 .footer-about p {
@@ -622,7 +625,7 @@ footer {
 }
 
 .footer-about p {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .footer-contactUs {
