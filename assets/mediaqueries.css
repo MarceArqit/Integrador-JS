@@ -121,7 +121,9 @@
 
 /* SMARTPHONES */
 @media (max-width: 576px) {
- 
+  .redes{
+    display: none;
+  }
   .newsCart {
     left: 0;
     width: 100%;
@@ -129,7 +131,7 @@
   }
 
   .img a img{
-    width: 60%;
+    width: 50%;
   }
 
   /*Hero*/
@@ -223,10 +225,16 @@
     display: none;
   }
 
+
+
+
+}
+
+@media (max-width: 300px) {
+
   .redes{
     display: none;
   }
-
 
 }
 

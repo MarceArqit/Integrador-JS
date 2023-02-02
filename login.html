@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ingreso a .todayNews</title>
     <link rel="stylesheet" href="./assets/loginAndRegister.css" />
     <link
@@ -13,72 +13,83 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./Assets/mediaqueries.css">
-</head>
-<body>
-  <header>
-    <div class="header__ppal">
-      <div class="redes">
-        <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
-        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-      </div>
-      <div class="logo__img">
-        <a href="./index.html"><img src="./Assets/img/todaynewslogo1.png" alt="logo" class="logo" /></a>
-      </div>
-
-      <nav class="navbar">
-        
-        <div>
-          <ul class="navbar-list">
-            <li><a class="navbar-login" href="./login.html">Login</a></li>
-            <li>
-              <a class="navbar-register" href="./register.html"
-                >Suscribite ahora</a
-              >
-            </li>
-          </ul>
+    <link rel="stylesheet" href="./Assets/mediaqueries.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header__ppal">
+        <div class="redes">
+          <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+        <div class="logo__img">
+          <a href="./index.html"
+            ><img src="./Assets/img/todaynewslogo1.png" alt="logo" class="logo"
+          /></a>
         </div>
 
-     
-      </nav>
-    </div>
-  </header>
+        <nav class="navbar">
+          <div>
+            <ul class="navbar-list">
+              <li><a class="navbar-login" href="./login.html">Login</a></li>
+              <li>
+                <a class="navbar-register" href="./register.html"
+                  >Suscribite ahora</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
     <main>
-        <form class="form-container" id="form">
-            <h3 class="welcome">Bienvenido!</h3>
-            <p class="form__title">Ingresá a tu espacio <span>.todayNews</span></p>
-    
-    
-            <div class="form__field">
-              <input type="text" placeholder="Ingrese su Usuario" class="form__input" id="username" required autocomplete="off">
-              <small></small>
-            </div>
-    
-    
-            
-            <div class="form__field">
-              <input type="password" placeholder="Ingrese su Contraseña" class="form__input" id="password" autocomplete="off">
-              <small></small>
-            </div>
-    
+      <form class="form-container" id="form">
+        <h3 class="welcome">Bienvenido!</h3>
+        <p class="form__title">Ingresá a tu espacio <span>.todayNews</span></p>
 
-            <button type="submit" class="form__submit__btn"><span>Ingresar</span><span>Bienvenido</span></button>
-           
-    
-            
-          </form>
-          
+        <div class="form__field">
+          <input
+            type="text"
+            placeholder="Ingrese su Usuario"
+            class="form__input"
+            id="username"
+            required
+            autocomplete="off"
+          />
+          <small></small>
+        </div>
+
+        <div class="form__field">
+          <input
+            type="password"
+            placeholder="Ingrese su Contraseña"
+            class="form__input"
+            id="password"
+            autocomplete="off"
+          />
+          <small></small>
+        </div>
+
+        <button type="submit" class="form__submit__btn">
+          <span>Ingresar</span><span>Bienvenido</span>
+        </button>
+      </form>
     </main>
     <footer>
-      <div class="footer-container">    
+      <div class="footer-container">
         <div class="footer-information">
           <div class="footer-about">
             <div class="about-img">
-              <img src="./assets/img/todaynewslogo1.png" alt="logo">
+              <img src="./assets/img/todaynewslogo1.png" alt="logo" />
             </div>
-           
-            <p class="about-us">Somos un portal de noticias, con el objetivo de acercarte las ultimas noticias del pais y del mundo, resumiendo en pequeños titulares la informacion y si es de tu interes, podras continuar leyendo la noticia completa.</p>
+
+            <p class="about-us">
+              Somos un portal de noticias, con el objetivo de acercarte las
+              ultimas noticias del pais y del mundo, resumiendo en pequeños
+              titulares la informacion y si es de tu interes, podras continuar
+              leyendo la noticia completa.
+            </p>
           </div>
           <div class="footer-contactUs">
             <div class="footer-contact">
@@ -106,14 +117,13 @@
               </ul>
             </div>
           </div>
-          </div>
+        </div>
       </div>
       <div class="copyright">
         <p>Hecho por<b> © 2023 MarceArqIt</b></p>
       </div>
-      
     </footer>
     <script src="./assets/validationLogin.js"></script>
-      <script src="./assets/main.js"></script>
-</body>
+    <script src="./assets/main.js"></script>
+  </body>
 </html>
