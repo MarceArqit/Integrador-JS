@@ -258,63 +258,13 @@
     display: none;
   }
 
-  .slidershow{
-    position: relative;
-    width: 400px;
-    height: 200px;
-    overflow: hidden;
- 
-  }
- 
 
-  .bar {
-    width: 40px;
-    height: 10px;
-    border: 2px solid rgb(29, 28, 28);
-    margin: 6px;
-    cursor: pointer;
-    transition: 0.4s;
-  }
-  
-  .link {
-    position: relative;
-    top: 55%;
-    left: 5%;
-    background-color: black;
-    padding: 5px10px;
-    border-radius: 15px;
-    color: white;
-    font-family: "Roboto", sans-serif;
-  }
-  .title-position{
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: "Roboto", sans-serif;
-    position: relative;
-    left: 22%;
-    top: 50%;
-  }
 
-   /*CONTACT US*/
- 
-   .general-info{
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    gap: 5px;
-  
-   }
-  /*FOOTER*/
-  .footer-links {
-    flex-direction: column;
-    text-align: center;
-  }
 
-  .footer-information{
-    display: none;
-  }
-
+/*FOOTER*/
+ .footer-container{
+  display: none;
+ }
 }
 
 
