@@ -93,9 +93,7 @@
     max-width: 80%;
   }
 
-  footer{
-
-  }
+ 
   .footer-about p {
     display: none;
   }
@@ -122,6 +120,13 @@
 /* SMARTPHONES */
 @media (max-width: 576px) {
   .redes{
+    display: none;
+  }
+
+  .redes-register{
+    display: none;
+  }
+  .redes i {
     display: none;
   }
   .newsCart {
@@ -265,7 +270,15 @@
  .footer-container{
   display: none;
  }
+
+ .footer-container-register{
+  display: none;
+ }
+
+ .redes i {
+ display: none;
 }
 
 
 
+}
