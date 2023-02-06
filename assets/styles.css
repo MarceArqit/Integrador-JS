@@ -132,16 +132,41 @@ header {
   flex-direction: column;
   gap: 20px;
 }
+.savedInCart{
+  display: flex;
+  flex-direction: column;
+  border: 1px rgb(214, 214, 214) solid;
+  border-radius: 10px;
+  padding: 5px;
+}
 
-.saveNew {
+.saveInCart-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.saveInCart-info img{
+  width: 20%;
+}
+
+.savedInCart-middle{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
+  gap:5px;
+  padding: 5px;
 }
 
-.saveNew img {
-  width: 10%;
+.savedInCart-middle a{
+background-color: black;
+color: white;
+padding: 2px 7px;
+border-radius: 5px;
+font-size: 14px;
 }
+
 .savedInfo {
   display: flex;
   flex-direction: column;

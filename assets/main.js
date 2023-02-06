@@ -160,23 +160,27 @@ const closeOnOverlayClick = () => {
   overlay.classList.remove("show-overlay");
 };
 
-const renderCartNews = ({ id, Img, UrlNews, Title, Description}) => {
+const renderCartNews = ({ id, Img, UrlNews, Title, Description }) => {
   return `
-  <div class="saveNew">
-  <img src="${Img}" alt="img" id="${id}">
-  <div class="savedInfo">
-    <h2>${Title}</h2>
-    <p>${Description}</p>
-    <a href="${UrlNews}">Leer</a>
+<div class="savedInCart">
+    <div class="saveInCart-info">
+      <img src="${Img}" alt="img" id="${id}">
+        <div class="savedInCart-middle">
+        <h3>${Title}</h3>
+        <a href="${UrlNews}">Leer</a>
+    </div>
   </div>
-  <button class="btn-delete"
-      data-id='${id}'
-      data-img='${Img}'
-      data-title='${Title}'
-      data-description= "${Description}"> <i class="fa-solid fa-trash"></i></button>
-</div>
+  <button class="btn-delete delete" data-description= '${Description}' data-id='${id}' data-img='${Img}'data-title'${Title}'>Delete</button>
+</div> 
   `;
 };
+
+
+
+
+
+
+
 
 const renderCartNew = () => {
   if (!cartNews.length) {
@@ -188,7 +192,7 @@ const renderCartNew = () => {
 
 const isExistingCartNews = ({ id }) => cartNews.some((news) => news.id === id);
 
-const createCartProduct = (news) => {
+const createCartNews = (news) => {
   cartNews = [...cartNews, { ...news, quantity: 1 }];
 };
 
@@ -208,34 +212,34 @@ const disableBtn = (button) => {
   }
 };
 
-const checkCartState = () => {
+const checkCartNewsState = () => {
   saveLocalStorage(cartNews);
   renderCartNew();
   disableBtn(deleteBtn);
   renderCartBubble();
+  removeNewsFromCart();
 };
 
 const addUnitToNew = (news) => {
   cartNews = cartNews.map((cartNew) =>
     cartNew.id === news.id
       ? { ...cartNew, quantity: cartNew.quantity + 1 }
-      : cartNew
-  );
+      : cartNew);
 };
 
 const addNew = (e) => {
   if (!e.target.classList.contains("btn-add")) return;
-  const { id, Title, Description, Img, UrlNews } = e.target.dataset;
+  const { id, Title, Img, UrlNews, Description } = e.target.dataset;
 
-  const product = { id, Title, Description, Img, UrlNews };
+  const news= { id, Title, Img, UrlNews, Description };
   if (isExistingCartNews(news)) {
     addUnitToNew(news);
     showSuccessModal("Se agregó una nueva noticia en favoritos.");
   } else {
-    createCartProduct(news);
+    createCartNews(news);
     showSuccessModal("La noticia se ha guardado en favoritos.");
   }
-  checkCartState();
+  checkCartNewsState ();
 };
 
 const renderCartBubble = () => {
@@ -244,7 +248,7 @@ const renderCartBubble = () => {
 
 const resetCartItems = () => {
   cartNews = [];
-  checkCartState();
+  checkCartNewsState ();
 };
 
 const completeCartAction = (confirmMsg, successMsg) => {
@@ -257,37 +261,37 @@ const completeCartAction = (confirmMsg, successMsg) => {
 
 const deleteNewsInCart = () => {
   completeCartAction(
-    "¿Desea eliminar todos los productos del carrito?",
-    "El carrito se ha vacido"
+    "¿Desea eliminar todas las noticias en favoritos?",
+    "No tiene noticias guardadas"
   );
 };
 
+const handleDeleteQuantity = (e) =>{
+  if (e.target.classList.contains ("delete")){
+    handleMinutBtnEvent(e.target.dataset.id);
+  }
+  checkCartNewsState
+}
+
 const handlePlusBtnEvent = (id) => {
-  const existingProduct = cartNews.find((product) => product.id === id);
-  addUnitToProduct(existingProduct);
+  const existingNews = cartNews.find((news) => news.id === id);
+  addUnitToNew(existingNews);
 };
 
 const removeNewsFromCart = ({ id }) => {
   cartNews = cartNews.filter((news) => news.id !== id);
-  checkCartState();
-};
-
-const substractNewUnit = ({ id }) => {
-  cartNews = cartNews.map((news) =>
-  news.id === id ? { ...news, quantity: news.quantity - 1 } : news
-  );
+  checkCartNewsState ();
 };
 
 const handleMinutBtnEvent = (id) => {
   const existingNews = cartNews.find((news) => news.id === id);
 
   if (existingNews.quantity === 1) {
-    if (window.confirm("¿Desea eliminar el producto del carrito?")) {
+    if (window.confirm("¿Desea eliminar la noticia de favoritos?")) {
       removeNewsFromCart(existingNews);
     }
     return;
   }
-  substractNewUnit(existingNews);
 };
 
 
@@ -295,12 +299,16 @@ const init = () => {
   renderNews();
   categories.addEventListener("click", applyFilter);
   btnLoad.addEventListener("click", showMoreNews);
+
   barsBtn.addEventListener("click", toggleMenu);
   newsCartBtn.addEventListener("click", toggleCart);
+
   window.addEventListener("scroll", closeOnScroll);
   barsMenu.addEventListener("click", closeOnClick);
   overlay.addEventListener("click", closeOnOverlayClick);
+  newsCart.addEventListener("click", handleDeleteQuantity)
   document.addEventListener("DOMContentLoaded", renderCartNew);
+
   news.addEventListener("click", addNew);
   deleteBtn.addEventListener("click", deleteNewsInCart);
   disableBtn(deleteBtn);

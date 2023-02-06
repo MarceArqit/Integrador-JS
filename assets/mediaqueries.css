@@ -1,10 +1,9 @@
 /* TABLET */
 @media (max-width: 992px) {
-
-  header{
+  header {
     display: flex;
     align-items: center;
-    justify-content: space-betweence;
+    justify-content: center;
   }
 
   .navbar {
@@ -22,7 +21,7 @@
     right: 5%;
     width: 90%;
     flex-direction: column;
-    background-color:rgb(241, 241, 241);
+    background-color: rgb(241, 241, 241);
     border: 2px solid black;
     border-top: 0px;
     border-radius: 0px 0px 15px 15px;
@@ -33,18 +32,20 @@
     display: none;
   }
 
-  .img{
+  .navbar-list-register,
+  .navbar-list-login {
+    display: none;
+  }
+
+  .img {
     display: flex;
     align-items: center;
     justify-content: center;
     align-content: center;
   }
 
-  .navbar-list a {
-    font-size: 18px;
-  }
 
-  .redes{
+  .redes-register {
     display: none;
   }
 
@@ -64,11 +65,10 @@
     display: flex;
   }
 
-
   .favorite-bubble {
     position: absolute;
     top: 10px;
-    right:90px;
+    right: 90px;
     text-align: center;
     background: rgb(102, 219, 141);
     color: black;
@@ -93,7 +93,6 @@
     max-width: 80%;
   }
 
- 
   .footer-about p {
     display: none;
   }
@@ -101,7 +100,7 @@
     width: 60%;
   }
 
-  .footer-contact h3{
+  .footer-contact h3 {
     font-size: 14px;
   }
 
@@ -116,14 +115,13 @@
   }
 }
 
-
 /* SMARTPHONES */
 @media (max-width: 576px) {
-  .redes{
+  .redes {
     display: none;
   }
 
-  .redes-register{
+  .redes-register {
     display: none;
   }
   .redes i {
@@ -135,10 +133,9 @@
     border: none;
   }
 
-  .img a img{
+  .img a img {
     width: 50%;
   }
-
 
   /*Hero*/
 
@@ -155,7 +152,7 @@
   .favorite-bubble {
     position: absolute;
     top: 10px;
-    right:45px;
+    right: 45px;
     text-align: center;
     background: rgb(102, 219, 141);
     color: black;
@@ -170,48 +167,40 @@
     border-radius: 50%;
   }
 
-  .none{
+  .none {
     display: none;
   }
 
-  .slidershow{
-   
-    display: none;
- 
-  }
-
-  .navbar-list-register,.navbar-list-login{
+  .slidershow {
     display: none;
   }
- 
 
-  
+  .navbar-list-register,
+  .navbar-list-login {
+    display: none;
+  }
 
-   /*CONTACT US*/
- 
-   .general-info{
+  /*CONTACT US*/
+
+  .general-info {
     display: flex;
     flex-direction: column;
     padding: 0;
     gap: 5px;
-  
-   }
+  }
   /*FOOTER*/
   .footer-links {
     flex-direction: column;
     text-align: center;
   }
 
-  .footer-information{
+  .footer-information {
     display: none;
   }
-
 }
 
-@media (max-width: 450px){
-
-
-  .redes{
+@media (max-width: 450px) {
+  .redes {
     display: none;
   }
   .newsCart {
@@ -220,14 +209,14 @@
     border: none;
   }
 
-  .img a img{
+  .img a img {
     width: 60%;
   }
 
-  .navbar-list-register,.navbar-list-login{
+  .navbar-list-register,
+  .navbar-list-login {
     display: none;
   }
-
 
   /*Hero*/
 
@@ -244,7 +233,7 @@
   .favorite-bubble {
     position: absolute;
     top: 10px;
-    right:25px;
+    right: 25px;
     text-align: center;
     background: rgb(102, 219, 141);
     color: black;
@@ -259,26 +248,20 @@
     border-radius: 50%;
   }
 
-  .none{
+  .none {
     display: none;
   }
 
+  /*FOOTER*/
+  .footer-container {
+    display: none;
+  }
 
+  .footer-container-register {
+    display: none;
+  }
 
-
-/*FOOTER*/
- .footer-container{
-  display: none;
- }
-
- .footer-container-register{
-  display: none;
- }
-
- .redes i {
- display: none;
-}
-
-
-
+  .redes i {
+    display: none;
+  }
 }
