@@ -32,7 +32,7 @@ const renderNew = ({ id, Img, Title, Description, Por, UrlNews }) => {
   <div class="card">
  
   <div class="card_img">
-      <img src="${Img}" alt="img">
+      <img src=${Img} alt="img">
   </div>
   <div class="mid">
       <h1>${Title}</h1>
@@ -40,13 +40,13 @@ const renderNew = ({ id, Img, Title, Description, Por, UrlNews }) => {
       <h4>${Por}</h4>
   </div>
   <div class="bot">
-      <a class="reedBtn" href="${UrlNews}"> Leer </a>
+      <a class="reedBtn" href=${UrlNews}> Leer </a>
      
       <button class="btn-add"
-      data-id='${id}'
-      data-img='${Img}'
-      data-title='${Title}'
-      data-description= "${Description}"> <i class="fa-solid fa-star"></i></button>
+      data-id=${id}
+      data-img=${Img}
+      data-title=${Title}
+      data-description=${Description}> <i class="fa-solid fa-star"></i></button>
   </div>
 </div>
   `;
@@ -162,21 +162,18 @@ const closeOnOverlayClick = () => {
 
 /* Carrito de Noticias Favoritas */
 
-const renderCartNews = ({ id, Img, Title, UrlNews}) => {
+const renderFavNews = (newCart) => {
+  const { id, Img, Title, UrlNews, Description} = newCart
   return `
 <div class="savedInCart">
     <div class="saveInCart-info">
-      <img src="${Img}" alt="img">
+      <img src=${Img} alt="img">
         <div class="savedInCart-middle">
         <h3>${Title}</h3>
-        <p>${Description}</p>
-        <a href="${UrlNews}">Leer</a>
+        <a href=${UrlNews}>Leer</a>
     </div>
   </div>
-  <button class="btn-delete delete" data-id='${id}'
-      data-img='${Img}'
-      data-title='${Title}'
-      data-description= "${Description}">Eliminar</button>
+  <button class="btn-delete delete" data-id=${id}>Eliminar</button>
 </div>
 
   `;
@@ -187,7 +184,7 @@ const renderCartNew = () => {
     newsCart.innerHTML = `<p class="empty-msg">No hay noticias guardadas.</p>`;
     return;
   }
-  newsCart.innerHTML = cartNews.map(renderCartNews).join("");
+  newsCart.innerHTML = cartNews.map(renderFavNews).join("");
 };
 
 const disableBtn = (button) => {
@@ -205,8 +202,8 @@ const creatNewsData = (id, Img, Title, Description) =>{
 const addNews = (e) => {
   if (!e.target.classList.contains("btn-add")) return;
   const {id, Img, Title, Description} = e.target.dataset;
-  const news = creatNewsData(id, Img, Title, Description);
-  console.log(news)
+  const newsData = creatNewsData(id, Img, Title, Description);
+  console.log(newsData)
 }
 
 

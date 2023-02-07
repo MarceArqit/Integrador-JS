@@ -1,11 +1,10 @@
-const renderCartNews = ({ id, Img, Title, UrlNews}) => {
+const renderCartNews = ({ id, Img, Title, UrlNews, Description}) => {
   return `
 <div class="savedInCart">
     <div class="saveInCart-info">
       <img src="${Img}" alt="img">
         <div class="savedInCart-middle">
         <h3>${Title}</h3>
-        <p>${Description}</p>
         <a href="${UrlNews}">Leer</a>
     </div>
   </div>
