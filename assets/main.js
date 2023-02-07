@@ -160,27 +160,27 @@ const closeOnOverlayClick = () => {
   overlay.classList.remove("show-overlay");
 };
 
-const renderCartNews = ({ id, Img, UrlNews, Title, Description }) => {
+/* Carrito de Noticias Favoritas */
+
+const renderCartNews = ({ id, Img, Title, UrlNews}) => {
   return `
 <div class="savedInCart">
     <div class="saveInCart-info">
-      <img src="${Img}" alt="img" id="${id}">
+      <img src="${Img}" alt="img">
         <div class="savedInCart-middle">
         <h3>${Title}</h3>
+        <p>${Description}</p>
         <a href="${UrlNews}">Leer</a>
     </div>
   </div>
-  <button class="btn-delete delete" data-description= '${Description}' data-id='${id}' data-img='${Img}'data-title'${Title}'>Delete</button>
-</div> 
+  <button class="btn-delete delete" data-id='${id}'
+      data-img='${Img}'
+      data-title='${Title}'
+      data-description= "${Description}">Eliminar</button>
+</div>
+
   `;
 };
-
-
-
-
-
-
-
 
 const renderCartNew = () => {
   if (!cartNews.length) {
@@ -188,20 +188,6 @@ const renderCartNew = () => {
     return;
   }
   newsCart.innerHTML = cartNews.map(renderCartNews).join("");
-};
-
-const isExistingCartNews = ({ id }) => cartNews.some((news) => news.id === id);
-
-const createCartNews = (news) => {
-  cartNews = [...cartNews, { ...news, quantity: 1 }];
-};
-
-const showSuccessModal = (msg) => {
-  successModal.classList.add("active-modal");
-  successModal.textContent = msg;
-  setTimeout(() => {
-    successModal.classList.remove("acive-modal");
-  }, 1500);
 };
 
 const disableBtn = (button) => {
@@ -212,107 +198,34 @@ const disableBtn = (button) => {
   }
 };
 
-const checkCartNewsState = () => {
-  saveLocalStorage(cartNews);
-  renderCartNew();
-  disableBtn(deleteBtn);
-  renderCartBubble();
-  removeNewsFromCart();
-};
-
-const addUnitToNew = (news) => {
-  cartNews = cartNews.map((cartNew) =>
-    cartNew.id === news.id
-      ? { ...cartNew, quantity: cartNew.quantity + 1 }
-      : cartNew);
-};
-
-const addNew = (e) => {
-  if (!e.target.classList.contains("btn-add")) return;
-  const { id, Title, Img, UrlNews, Description } = e.target.dataset;
-
-  const news= { id, Title, Img, UrlNews, Description };
-  if (isExistingCartNews(news)) {
-    addUnitToNew(news);
-    showSuccessModal("Se agregó una nueva noticia en favoritos.");
-  } else {
-    createCartNews(news);
-    showSuccessModal("La noticia se ha guardado en favoritos.");
-  }
-  checkCartNewsState ();
-};
-
-const renderCartBubble = () => {
-  favBubble.textContent = cartNews.reduce((acc, cur) => acc + cur.quantity, 0);
-};
-
-const resetCartItems = () => {
-  cartNews = [];
-  checkCartNewsState ();
-};
-
-const completeCartAction = (confirmMsg, successMsg) => {
-  if (!cartNews.length) return;
-  if (window.confirm(confirmMsg)) {
-    resetCartItems();
-    alert(successMsg);
-  }
-};
-
-const deleteNewsInCart = () => {
-  completeCartAction(
-    "¿Desea eliminar todas las noticias en favoritos?",
-    "No tiene noticias guardadas"
-  );
-};
-
-const handleDeleteQuantity = (e) =>{
-  if (e.target.classList.contains ("delete")){
-    handleMinutBtnEvent(e.target.dataset.id);
-  }
-  checkCartNewsState
+const creatNewsData = (id, Img, Title, Description) =>{
+  return {id, Img, Title, Description};
 }
 
-const handlePlusBtnEvent = (id) => {
-  const existingNews = cartNews.find((news) => news.id === id);
-  addUnitToNew(existingNews);
-};
+const addNews = (e) => {
+  if (!e.target.classList.contains("btn-add")) return;
+  const {id, Img, Title, Description} = e.target.dataset;
+  const news = creatNewsData(id, Img, Title, Description);
+  console.log(news)
+}
 
-const removeNewsFromCart = ({ id }) => {
-  cartNews = cartNews.filter((news) => news.id !== id);
-  checkCartNewsState ();
-};
 
-const handleMinutBtnEvent = (id) => {
-  const existingNews = cartNews.find((news) => news.id === id);
 
-  if (existingNews.quantity === 1) {
-    if (window.confirm("¿Desea eliminar la noticia de favoritos?")) {
-      removeNewsFromCart(existingNews);
-    }
-    return;
-  }
-};
 
 
 const init = () => {
   renderNews();
   categories.addEventListener("click", applyFilter);
   btnLoad.addEventListener("click", showMoreNews);
-
   barsBtn.addEventListener("click", toggleMenu);
   newsCartBtn.addEventListener("click", toggleCart);
-
   window.addEventListener("scroll", closeOnScroll);
   barsMenu.addEventListener("click", closeOnClick);
   overlay.addEventListener("click", closeOnOverlayClick);
-  newsCart.addEventListener("click", handleDeleteQuantity)
   document.addEventListener("DOMContentLoaded", renderCartNew);
-
-  news.addEventListener("click", addNew);
-  deleteBtn.addEventListener("click", deleteNewsInCart);
+  news.addEventListener("click", addNews);
   disableBtn(deleteBtn);
-  renderCartBubble();
+
 };
 
 init();
