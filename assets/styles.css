@@ -131,33 +131,41 @@ header {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 300px;
 }
 .savedInCart{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border: 1px rgb(214, 214, 214) solid;
   border-radius: 10px;
   padding: 5px;
+  width: 350px;
 }
 
 .saveInCart-info{
   display: flex;
-  justify-content: space-between;
+ justify-content: space-around;
   align-items: center;
+  padding: 5px;
 }
 
 .saveInCart-info img{
-  width: 20%;
+  width:50%;
+  border-radius:10px;
+
 }
 
 .savedInCart-middle{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap:5px;
-  padding: 5px;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+
+ 
 }
+
 
 .savedInCart-middle a{
 background-color: black;
@@ -167,12 +175,7 @@ border-radius: 5px;
 font-size: 14px;
 }
 
-.savedInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .btn-delete {
   display: flex;
@@ -198,7 +201,6 @@ main {
   width: 100%;
 }
 
-/*HERO SLIDER NEWS*/
 
 /* Render Area News */
 #info-news {

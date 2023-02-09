@@ -27,26 +27,27 @@ const saveLocalStorage = (favoriteList) => {
   localStorage.setItem("cartNews", JSON.stringify(favoriteList));
 };
 
-const renderNew = ({ id, Img, Title, Description, Por, UrlNews }) => {
+const renderNew = ({ id, img, title, description, por, url }) => {
   return `
   <div class="card">
  
   <div class="card_img">
-      <img src=${Img} alt="img">
+      <img src=${img} alt="img">
   </div>
   <div class="mid">
-      <h1>${Title}</h1>
-      <p>${Description}</p>
-      <h4>${Por}</h4>
+      <h1>${title}</h1>
+      <p>${description}</p>
+      <h4>${por}</h4>
   </div>
   <div class="bot">
-      <a class="reedBtn" href=${UrlNews}> Leer </a>
+      <a class="reedBtn" href=${url}> Leer </a>
      
       <button class="btn-add"
       data-id=${id}
-      data-img=${Img}
-      data-title=${Title}
-      data-description=${Description}> <i class="fa-solid fa-star"></i></button>
+      data-url=${url}
+      data-img=${img}
+      data-title=${title}
+      data-description=${description}> <i class="fa-solid fa-star"></i></button>
   </div>
 </div>
   `;
@@ -160,17 +161,18 @@ const closeOnOverlayClick = () => {
   overlay.classList.remove("show-overlay");
 };
 
-/* Carrito de Noticias Favoritas */
+/* "Carrito "de Noticias Favoritas */
 
 const renderFavNews = (newCart) => {
-  const { id, Img, Title, UrlNews, Description} = newCart
+  const { id, img, title, url, description } = newCart;
   return `
 <div class="savedInCart">
     <div class="saveInCart-info">
-      <img src=${Img} alt="img">
+      <img src=${img} alt="img">
         <div class="savedInCart-middle">
-        <h3>${Title}</h3>
-        <a href=${UrlNews}>Leer</a>
+        <h3>${title}</h3>
+        <p>${description}</p>
+        <a href=${url}>Leer</a>
     </div>
   </div>
   <button class="btn-delete delete" data-id=${id}>Eliminar</button>
@@ -178,7 +180,7 @@ const renderFavNews = (newCart) => {
 
   `;
 };
-
+// Funcion para renderizar favoritos.
 const renderCartNew = () => {
   if (!cartNews.length) {
     newsCart.innerHTML = `<p class="empty-msg">No hay noticias guardadas.</p>`;
@@ -186,6 +188,8 @@ const renderCartNew = () => {
   }
   newsCart.innerHTML = cartNews.map(renderFavNews).join("");
 };
+
+//Boton de existencia de noticias.
 
 const disableBtn = (button) => {
   if (!cartNews.length) {
@@ -195,34 +199,117 @@ const disableBtn = (button) => {
   }
 };
 
-const creatNewsData = (id, Img, Title, Description) =>{
-  return {id, Img, Title, Description};
-}
+// Tomo los datos para favoritos.
+const creatNewsData = (id, img, title, description, url) => {
+  return { id, img, title, description, url };
+};
+const existingNews = (news) => {
+  return cartNews.find((item) => item.id === news.id);
+};
 
+// Crear " carrito" de favoritos
+const createNewsInCart = (news) => {
+  cartNews = [...cartNews, { ...news, quantity: 1 }];
+};
+
+const showSuccessModal = (msg) => {
+  successModal.classList.add("active-modal");
+  successModal.textContent = msg;
+  setTimeout(() => {
+    successModal.classList.remove("acive-modal");
+  }, 1500);
+};
+
+const checkNewState = () => {
+  saveLocalStorage(cartNews);
+  renderCartNew(cartNews);
+  disableBtn(deleteBtn);
+};
+
+// AGregar Noticias a favoritos.
 const addNews = (e) => {
   if (!e.target.classList.contains("btn-add")) return;
-  const {id, Img, Title, Description} = e.target.dataset;
-  const newsData = creatNewsData(id, Img, Title, Description);
-  console.log(newsData)
+  const { id, img, title, description, url } = e.target.dataset;
+  const newsData = creatNewsData(id, img, title, description, url);
+
+  if (existingNews(newsData)) {
+    return;
+  } else {
+    createNewsInCart(newsData);
+    showSuccessModal("La noticia se agregó a favoritos");
+  }
+
+  checkNewState();
+};
+
+//Cantidad de Noticias
+const renderCartBubble = () => {
+  favBubble.textContent = cartNews.reduce((acc, cur) => acc + cur.quantity, 0);
+};
+
+const resetCartNews = () => {
+  cartNews = [];
+  checkNewState();
+};
+
+const completeCartAction = (confirmMsg, successMsg) => {
+  if (!cartNews.length) return;
+  if (window.confirm(confirmMsg)) {
+    resetCartNews();
+    alert(successMsg);
+  }
+};
+
+//Eliminar todas las noticia de Favoritos
+const deleteNewsInCart = () => {
+  completeCartAction(
+    "¿Desea eliminar todas las noticias en favoritos?",
+    "No tiene noticias guardadas"
+  );
+};
+
+const DeleteOnlyOneNew = (e) => {
+  if (e.target.classList.contains("delete")) {
+    deleteSomeNew(e.target.dataset.id);
+    
+  }
+  checkNewState();
 }
 
+  const deleteSomeNew = (id) => {
+    const ifExistingNews = cartNews.find((news) => news.id === id);
+    if (ifExistingNews.quantity === 1) {
+      if (window.confirm("¿Queres eliminar la noticia de favoritos?")) {
+        removeNews(ifExistingNews);
+      }
+      return;
+    }
+  };
 
 
-
-
+const removeNews = ({ id }) => {
+  cartNews = cartNews.filter((news) => news.id !== id);
+  checkNewState();
+};
+//Funciones Inicializadoras
 const init = () => {
   renderNews();
   categories.addEventListener("click", applyFilter);
   btnLoad.addEventListener("click", showMoreNews);
+
   barsBtn.addEventListener("click", toggleMenu);
   newsCartBtn.addEventListener("click", toggleCart);
+
   window.addEventListener("scroll", closeOnScroll);
   barsMenu.addEventListener("click", closeOnClick);
   overlay.addEventListener("click", closeOnOverlayClick);
   document.addEventListener("DOMContentLoaded", renderCartNew);
+
   news.addEventListener("click", addNews);
   disableBtn(deleteBtn);
-
+  deleteBtn.addEventListener("click", deleteNewsInCart);
+  newsCart.addEventListener("click", DeleteOnlyOneNew);
+  renderCartBubble();
 };
 
 init();
